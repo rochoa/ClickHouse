@@ -20,6 +20,7 @@ public:
     /// The composite identifier will have a concatenated name (of the form a.b.c),
     /// and individual components will be available inside the name_parts.
     String name;
+    std::vector<String> name_parts;
 
     ASTIdentifier(const String & name_, std::vector<String> && name_parts_ = {});
     ASTIdentifier(std::vector<String> && name_parts_);
@@ -53,7 +54,6 @@ protected:
 private:
     using ASTWithAlias::children; /// ASTIdentifier is child free
 
-    std::vector<String> name_parts;
     std::shared_ptr<IdentifierSemanticImpl> semantic; /// pimpl
 
     static std::shared_ptr<ASTIdentifier> createSpecial(const String & name, std::vector<String> && name_parts = {});
